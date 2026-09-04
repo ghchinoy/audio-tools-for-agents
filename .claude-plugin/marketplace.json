@@ -1,0 +1,16 @@
+{
+  "name": "audio-tools-for-agents",
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "audio-stemming",
+      "source": "./plugins/audio-stemming",
+      "description": "Deterministic audio stem separation using Meta HTDemucs deep learning models.",
+      "skills": [
+        "./plugins/audio-stemming/skills/audio-stemming"
+      ]
+    }
+  ]
+}

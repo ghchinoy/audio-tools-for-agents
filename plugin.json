@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "audio-tools",
+  "version": "0.1.0",
+  "description": "Deterministic audio manipulation tools and deep learning stems separation for AI agents.",
+  "author": {
+    "name": "G. H. Chinoy"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "audio",
+    "stems",
+    "demucs",
+    "htdemucs",
+    "music",
+    "mcp",
+    "agent-skill"
+  ]
+}
