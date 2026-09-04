@@ -11,6 +11,19 @@ The `audio-stemming` skill complies with the open [Agent Skills Specification](h
 2. **Activation Stage:** When a prompt matches the skill's capabilities (e.g., "isolate vocals from track.wav"), the agent loads the full instructions from `SKILL.md`.
 3. **Execution Stage:** The agent follows the structured instructions, referencing the decision matrix and invoking bundled runner scripts.
 
+## Discovery & Installation Paths
+
+To support both single-plugin and monorepo host discovery:
+* **Antigravity & Claude Code:** Looks for `skills/<skill-name>/SKILL.md` directly at the repository root. This is supported via the top-level `skills` symlink:
+  ```bash
+  skills/audio-stemming/SKILL.md -> plugins/audio-stemming/skills/audio-stemming/SKILL.md
+  ```
+* **Global Agent Discovery:** Link the skill directly into your host environment:
+  ```bash
+  ln -s "$(pwd)/skills/audio-stemming" ~/.gemini/config/skills/audio-stemming
+  ln -s "$(pwd)/skills/audio-stemming" ~/.claude/skills/audio-stemming
+  ```
+
 ## Skill Package Structure
 
 ```text

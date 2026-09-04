@@ -12,9 +12,25 @@ description: Get up and running with audio-tools-for-agents in under two minutes
 3. **FFmpeg:** System binary installed in `PATH` (used by PyTorch audio decoders)
 4. **Host RAM:** At least 3.0 GB of available system memory
 
-## Installation
+## Installation Options
 
-Clone the repository and synchronize the environment:
+### Option A: 1-Command Bootstrap (Recommended for Agents)
+
+Installs the `audio-tools` CLI to `~/.local/bin` and links the `audio-stemming` skill to Antigravity and Claude Code:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ghchinoy/audio-tools-for-agents/main/scripts/install.sh | bash
+```
+
+### Option B: 1-Line Global Tool Install
+
+Install the standalone binary globally without cloning the source repository:
+
+```bash
+uv tool install git+https://github.com/ghchinoy/audio-tools-for-agents.git
+```
+
+### Option C: Developer Source Clone
 
 ```bash
 git clone https://github.com/ghchinoy/audio-tools-for-agents.git

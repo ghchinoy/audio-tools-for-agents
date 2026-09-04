@@ -72,3 +72,19 @@ def test_cli_inspect_missing_file():
     assert result.exit_code == 1
     data = json.loads(result.output)
     assert data["status"] == "error"
+
+
+def test_separate_sh_out_of_tree(tmp_path):
+    import subprocess
+    from pathlib import Path
+
+    script = (
+        Path(__file__).resolve().parent.parent
+        / "skills"
+        / "audio-stemming"
+        / "scripts"
+        / "separate.sh"
+    )
+    result = subprocess.run([str(script)], cwd=tmp_path, capture_output=True, text=True)
+    assert result.returncode == 1
+    assert "ERR_MISSING_ARG" in result.stderr

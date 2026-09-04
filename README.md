@@ -15,8 +15,25 @@
 
 Requirements: `uv` and `ffmpeg`.
 
+### Option A: 1-Command Agent & CLI Installer (Recommended)
+Automatically installs the CLI to `~/.local/bin/audio-tools` and registers skills for Antigravity and Claude Code:
+
 ```bash
-# 1. Install dependencies
+curl -fsSL https://raw.githubusercontent.com/ghchinoy/audio-tools-for-agents/main/scripts/install.sh | bash
+```
+
+### Option B: 1-Line Global Tool Install
+Install the CLI directly into your global environment without manual cloning:
+
+```bash
+uv tool install git+https://github.com/ghchinoy/audio-tools-for-agents.git
+```
+
+### Option C: Local Development Clone
+```bash
+# 1. Clone & install dependencies
+git clone https://github.com/ghchinoy/audio-tools-for-agents.git
+cd audio-tools-for-agents
 uv sync
 
 # 2. Inspect an audio file (metadata, duration, channels)

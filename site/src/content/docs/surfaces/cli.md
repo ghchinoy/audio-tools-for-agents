@@ -5,6 +5,16 @@ description: Dual-mode command-line interface design for human developers and au
 
 The `audio-tools` command-line tool implements the Dual-Experience (DX and AX) paradigm. It balances rich visual terminal output for human operators with deterministic, single-object JSON for autonomous coding agents.
 
+## Global Tool Installation
+
+To use `audio-tools` directly anywhere on your system without prefixing commands with `uv run`:
+
+```bash
+uv tool install git+https://github.com/ghchinoy/audio-tools-for-agents.git
+```
+
+This places `audio-tools` directly into `~/.local/bin/audio-tools` in an isolated environment.
+
 ## Dual-Mode Operation
 
 ### Human Developer Mode (DX)
