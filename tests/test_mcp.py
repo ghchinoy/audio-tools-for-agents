@@ -35,7 +35,7 @@ def test_mcp_separate_stems(mock_separate, sample_wav_path):
         input_path=sample_wav_path,
         output_dir="output",
         stems_count=4,
-        model_name="htdemucs.yaml",
+        model_name="htdemucs",
         device="cpu",
         stems={"vocals": "output/vocals.wav"},
         peaks={"vocals": [0.1, 0.2]},

@@ -1,0 +1,37 @@
+---
+title: Audio Tools for Agents
+description: Deterministic audio manipulation and local deep-learning stem separation for AI agents.
+template: splash
+hero:
+  tagline: Deterministic audio manipulation and local deep-learning stem separation for AI agents.
+  image:
+    file: ../../../public/favicon.svg
+  actions:
+    - text: Quickstart Guide
+      link: /audio-tools-for-agents/getting-started/quickstart/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/ghchinoy/audio-tools-for-agents
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Core Delivery Surfaces
+
+<CardGrid stagger>
+  <Card title="Agent-Aware CLI" icon="laptop">
+    Dual-mode terminal execution. Human developer ergonomics by default; passing `--json` guarantees deterministic, single-object JSON on stdout for automated agents.
+  </Card>
+  <Card title="Model Context Protocol (MCP)" icon="setting">
+    Standard stdio JSON-RPC server implementation. Allows Claude, OpenCode, and Cursor agents to inspect audio and isolate stems without shell subprocess management.
+  </Card>
+  <Card title="Agent Skills Spec" icon="open-book">
+    Progressive disclosure skill package complying with `agentskills.io`. Includes discovery frontmatter, model selection rubrics, and non-interactive runner scripts.
+  </Card>
+  <Card title="Meta HTDemucs Neural DSP" icon="random">
+    Official Meta AI PyTorch inference engine. Separates audio into 4 stems (vocals, drums, bass, other) or 6 stems (+ guitar, piano) with live memory telemetry.
+  </Card>
+</CardGrid>

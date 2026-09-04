@@ -260,28 +260,20 @@ def benchmark(json_mode):
     "--model",
     type=click.Choice(["all", "4s", "6s"]),
     default="all",
-    help="Select which models to pre-download: '4s' (htdemucs.yaml), '6s' (htdemucs_6s.yaml), or 'all'.",
+    help="Select which models to pre-download: '4s' (htdemucs), '6s' (htdemucs_6s), or 'all'.",
 )
-@click.option(
-    "--model-dir",
-    default=None,
-    help="Target directory to store model files.",
-)
-def download_models(model, model_dir):
-    """Pre-cache HTDemucs model configurations and weights for offline execution."""
-    from audio_separator.separator import Separator
+def download_models(model):
+    """Pre-cache Meta HTDemucs model configurations and weights for offline execution."""
+    import demucs.api
 
-    cache_dir = model_dir or os.path.expanduser("~/.cache/audio-tools/models")
-    os.makedirs(cache_dir, exist_ok=True)
-    click.secho(f"Downloading models into {cache_dir}...", fg="cyan")
+    click.secho("Pre-caching official Meta HTDemucs model weights...", fg="cyan")
 
-    sep = Separator(model_file_dir=cache_dir)
     if model in ("4s", "all"):
-        click.echo("Fetching 4-stem model (htdemucs.yaml)...")
-        sep.load_model("htdemucs.yaml")
+        click.echo("Fetching 4-stem model (htdemucs)...")
+        demucs.api.Separator(model="htdemucs")
     if model in ("6s", "all"):
-        click.echo("Fetching 6-stem model (htdemucs_6s.yaml)...")
-        sep.load_model("htdemucs_6s.yaml")
+        click.echo("Fetching 6-stem model (htdemucs_6s)...")
+        demucs.api.Separator(model="htdemucs_6s")
 
     click.secho("Model cache pre-warm complete.", fg="green")
 

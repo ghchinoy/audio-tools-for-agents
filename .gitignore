@@ -62,3 +62,8 @@ temp/
 .coverage
 htmlcov/
 .ruff_cache/
+
+# Astro Starlight site build artifacts
+site/dist/
+site/.astro/
+site/node_modules/
