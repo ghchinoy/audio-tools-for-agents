@@ -1,10 +1,20 @@
-name: CI
+name: CI & Docs Deployment
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   test:
@@ -32,9 +42,13 @@ jobs:
       - name: Run test suite
         run: uv run pytest tests -v
 
-  docs:
-    name: Build Documentation Site
+  build-deploy-docs:
+    name: Build & Deploy Documentation
+    needs: test
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,7 +60,24 @@ jobs:
           cache-dependency-path: site/package-lock.json
 
       - name: Install dependencies
-        run: cd site && npm ci
+        run: npm ci
+        working-directory: site
 
       - name: Build Astro Starlight documentation
-        run: cd site && npm run build
+        run: npm run build
+        working-directory: site
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: github.ref == 'refs/heads/main'
+        uses: actions/deploy-pages@v4
